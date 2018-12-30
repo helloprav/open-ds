@@ -8,7 +8,7 @@
 	<!-- proxy,common,util,web log appender -->
 	<appender name="SHOP-GENERAL"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${LOG_DIR}/logs/school.log</file>
+		<file>${LOG_DIR}/logs/ofds.log</file>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<Pattern>[%d{"yyyy-MM-dd HH:mm:ss,SSS,ZZZ", IST}] [%-5level] [%file %method] | %X{req.requestURI} -
 				 | %X{request} | %X{organization} | %X{userId} | %X{client} | %X{session} | %X{service} | - %msg%n</Pattern>
@@ -27,7 +27,7 @@
 	<!-- asset management log appender -->
 	<appender name="SHOP-OTHERS"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${LOG_DIR}/logs/school-others.log</file>
+		<file>${LOG_DIR}/logs/ofds-others.log</file>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>[%d{"yyyy-MM-dd HH:mm:ss,SSS,ZZZ", IST}] [%-5level] [%file %method] | %X{req.requestURI} -
                  | %X{request} | %X{organization} | %X{userId} | %X{client} | %X{session} | %X{service} | - %msg%n</Pattern>
