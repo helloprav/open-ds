@@ -1,0 +1,12 @@
+<div class="btn-group d-flex flex-row-reverse">
+	<a href="#/group-mgmt/groups/new"><button type="button"
+			class="btn btn-md btn-primary btn-create">Add </button></a> &nbsp;
+	<button type="button"
+		class="btn btn-primary dropdown-toggle ng-binding"
+		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{selectedStatus.value}}</button>
+	<ul class="dropdown-menu">
+		<li ng-repeat="status in entityStatus" class="dropdown"><a
+			class="dropdown-item" href="#/group-mgmt/groups/list/{{status}}">{{status}}</a>
+		</li>
+	</ul>
+</div>

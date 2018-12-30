@@ -1,0 +1,8 @@
+=========================TODO======================================================================
+1. Create DB [if not exists] script on tomcat startup
+2. Create/Update tables already present as part of JPA Configuration
+3. Insert master data script after context initialized (if not already present)
+4. 
+=========================COMPLETED======================================================================
+========================================================================================================
+6. All services to be HTTPS secured

@@ -1,0 +1,45 @@
+			<div class="form-group">
+				<label for="type" class="col-sm-2 control-label">Select User Role as:</label>
+				<div class="col-sm-10">
+					<select class="form-control" name="user.role" id="user.role"
+						ng-model="user.role" ng-init=" user.role = user.role"
+						ng-options="userRole as userRole for userRole in userRoles"></select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label">First Name</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" placeholder="First Name" ng-model="user.firstName" id="name" required></input>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label">Last Name</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" placeholder="Name" ng-model="user.lastName" id="name" required></input>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="executionNode" class="col-sm-2 control-label">Gender</label>
+				<div class="col-sm-10">
+					<select class="form-control" name="user.gender" id="user.gender"
+						ng-model="user.gender" ng-init=" user.gender = user.gender"
+						ng-options="userGender as userGender for userGender in userGenders"></select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="email" class="col-sm-2 control-label">Email</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" placeholder="email" ng-model="user.email" id="email" ></input>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="mobile" class="col-sm-2 control-label">Mobile</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" placeholder="mobile" ng-model="user.mobile" id="mobile" ></input>
+				</div>
+			</div>

@@ -1,0 +1,21 @@
+<!-- https://stackoverflow.com/questions/18672452/left-align-and-right-align-within-div-in-bootstrap -->
+<div class="col-sm-12 col-sm-offset-0">
+
+	<div class="card m-0 p-0">
+		<div class="card-header" style="background-color: #eae5ea">
+			<div class="row" ng-include="'templates/user-mgmt/item-header.html'" 12ui-view="item-header">
+			</div>
+		</div>
+		<!-- end of card-header -->
+		<div class="card-body m-0 p-0 pr-0 pb-0 pl-0">
+			<div class="row" ui-view="item-content"></div>
+		</div>
+		<!-- end of card-body -->
+		<div class="card-footer" align="center">
+			<div class="row" ng-if="" ng-include="'templates/user-mgmt/item-footer.html'"></div>
+		</div>
+		<!-- end of card-footer -->
+	</div>
+	<!-- end of card -->
+
+</div>

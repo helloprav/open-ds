@@ -1,0 +1,367 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.openframework</groupId>
+	<artifactId>open-ds</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>open-ds</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.plugin.version>3.3</maven.compiler.plugin.version>
+		<java.version>1.8</java.version>
+		<version.project>0.0.1-SNAPSHOT</version.project>
+		<javax.el.version>2.2.4</javax.el.version>
+		<version.spring>5.0.2.RELEASE</version.spring>
+		<version.spring-data-jpa>2.0.5.RELEASE</version.spring-data-jpa>
+		<!-- <version.spring-data-jpa>1.11.10.RELEASE</version.spring-data-jpa> -->
+		<version.jpa-hibernate>2.2</version.jpa-hibernate>
+		<version.hibernate>5.3.0.Beta2</version.hibernate>
+		<version.mysql>5.1.32</version.mysql>
+		<h2.version>1.4.187</h2.version>
+		<version.aspectj>1.7.4</version.aspectj>
+		<version.org.slf4j>1.7.16</version.org.slf4j>
+		<version.ch.qos.logback>1.1.5</version.ch.qos.logback>
+		<version.fasterxml.jackson>2.9.2</version.fasterxml.jackson>
+		<version.modelmapper>0.7.5</version.modelmapper>
+		<version.json-path>2.2.0</version.json-path>
+		<apachetiles.version>3.0.5</apachetiles.version>
+		<version.swagger>2.7.0</version.swagger>
+		<version.json-path>2.2.0</version.json-path>
+	</properties>
+
+
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- Project related dependencies -->
+			<dependency>
+				<groupId>org.openframework</groupId>
+				<artifactId>open-commons</artifactId>
+				<version>${version.project}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openframework</groupId>
+				<artifactId>open-commons-spring</artifactId>
+				<version>${version.project}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openframework</groupId>
+				<artifactId>open-commons-rest</artifactId>
+				<version>${version.project}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openframework</groupId>
+				<artifactId>open-commons-jpa</artifactId>
+				<version>${version.project}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openframework</groupId>
+				<artifactId>open-commons-config-stub</artifactId>
+				<version>${version.project}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openframework</groupId>
+				<artifactId>open-commons-config</artifactId>
+				<version>${version.project}</version>
+			</dependency>
+
+			<!-- Servlet Dependency -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>3.1.0</version>
+				<scope>provided</scope>
+			</dependency>
+	        <dependency>
+	            <groupId>javax.servlet.jsp</groupId>
+	            <artifactId>javax.servlet.jsp-api</artifactId>
+	            <version>2.3.1</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>javax.servlet</groupId>
+	            <artifactId>jstl</artifactId>
+	            <version>1.2</version>
+	        </dependency>
+			<!-- @Inject -->
+			<dependency>
+				<groupId>javax.inject</groupId>
+				<artifactId>javax.inject</artifactId>
+				<version>1</version>
+			</dependency>
+	
+	        <!-- Apache Tiles -->
+	        <dependency>
+	            <groupId>org.apache.tiles</groupId>
+	            <artifactId>tiles-core</artifactId>
+	            <version>${apachetiles.version}</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.apache.tiles</groupId>
+	            <artifactId>tiles-api</artifactId>
+	            <version>${apachetiles.version}</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.apache.tiles</groupId>
+	            <artifactId>tiles-servlet</artifactId>
+	            <version>${apachetiles.version}</version>
+	        </dependency>
+            <dependency>
+                <groupId>org.apache.tiles</groupId>
+                <artifactId>tiles-jsp</artifactId>
+                <version>${apachetiles.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tiles</groupId>
+                <artifactId>tiles-template</artifactId>
+                <version>${apachetiles.version}</version>
+            </dependency>
+
+			<!-- Validation API JARs listed below -->
+			<!-- JSR 303 -->
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>1.1.0.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>5.2.1.Final</version>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${version.spring}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-core</artifactId>
+				<version>1.9.5</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- Dependency for json api: jackson -->
+			<dependency>
+				<groupId>com.jayway.jsonpath</groupId>
+				<artifactId>json-path</artifactId>
+				<version>${version.json-path}</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- javax.el -->
+			<dependency>
+				<groupId>javax.el</groupId>
+				<artifactId>javax.el-api</artifactId>
+				<version>${javax.el.version}</version>
+			</dependency>
+
+			<!-- Logging Framework -->
+			<!-- Empty commons logging dependency -->
+			<!-- <dependency> <groupId>commons-logging</groupId> <artifactId>commons-logging</artifactId> 
+				<version>99-empty</version> </dependency> -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${version.org.slf4j}</version>
+			</dependency>
+			<!-- For how to remove commons-logging dependency from pom.xml, so that 
+				slf4j logging could be used, please read: https://www.slf4j.org/faq.html#excludingJCL -->
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${version.ch.qos.logback}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>${version.ch.qos.logback}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-access</artifactId>
+				<version>${version.ch.qos.logback}</version>
+			</dependency>
+
+			<!-- Spring Framework: MVC -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${version.spring}</version>
+				<!-- Excluded commons logging to use SLF4J logging. This exclusion will 
+					remove commons-logging dependency from all spring jars as spring-core is 
+					parent of all spring jars. For more, please read:: http://docs.spring.io/spring/docs/current/spring-framework-reference/html/overview.html#overview-logging -->
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aspects</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+
+			<!-- Persistence API -->
+			<!-- this maven dependency is used for jpa 2.2 -->
+			<dependency>
+				<groupId>javax.persistence</groupId>
+				<artifactId>javax.persistence-api</artifactId>
+				<version>${version.jpa-hibernate}</version>
+			</dependency>
+			<!-- Spring Transactions -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+			<!-- Spring ORM -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+			<!-- Spring Data -->
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>${version.spring-data-jpa}</version>
+			</dependency>
+
+			<!-- Hibernate -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${version.hibernate}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>${version.hibernate}</version>
+			</dependency>
+			<!-- Hibernate EHCache -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-ehcache</artifactId>
+				<version>${version.hibernate}</version>
+			</dependency>
+
+			<!-- C3P0 connection pool -->
+			<dependency>
+				<groupId>c3p0</groupId>
+				<artifactId>c3p0</artifactId>
+				<version>0.9.1.2</version>
+			</dependency>
+
+			<!-- MySQL database driver -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>5.1.38</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<!-- Json Support for the Spring Controllers / End Points -->
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<version>${version.fasterxml.jackson}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${version.fasterxml.jackson}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>${version.fasterxml.jackson}</version>
+			</dependency>
+
+			<!-- Swagger API -->
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${version.swagger}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${version.swagger}</version>
+			</dependency>
+
+			<!-- Apache Commons API -->
+			<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.7</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.4</version>
+			</dependency>
+
+			<!-- AspectJ -->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>${version.aspectj}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${version.aspectj}</version>
+			</dependency>
+
+			<!-- YAML Dependency -->
+			<dependency>
+				<groupId>org.yaml</groupId>
+				<artifactId>snakeyaml</artifactId>
+				<version>1.11</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<modules>
+		<module>ofds</module>
+	</modules>
+</project>

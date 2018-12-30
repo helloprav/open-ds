@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" packagingData="true">
+
+	<contextName>SHOP</contextName>
+    <property name="LOG_DIR" value="/logs/usersecurity" />
+    <property name="LOG_LEVEL" value="DEBUG" />
+
+	<!-- proxy,common,util,web log appender -->
+	<appender name="SHOP-GENERAL"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_DIR}/logs/school.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>[%d{"yyyy-MM-dd HH:mm:ss,SSS,ZZZ", IST}] [%-5level] [%file %method] | %X{req.requestURI} -
+				 | %X{request} | %X{organization} | %X{userId} | %X{client} | %X{session} | %X{service} | - %msg%n</Pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${LOG_DIR}/logs/archived/school.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<!-- asset management log appender -->
+	<appender name="SHOP-OTHERS"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_DIR}/logs/school-others.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>[%d{"yyyy-MM-dd HH:mm:ss,SSS,ZZZ", IST}] [%-5level] [%file %method] | %X{req.requestURI} -
+                 | %X{request} | %X{organization} | %X{userId} | %X{client} | %X{session} | %X{service} | - %msg%n</Pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${LOG_DIR}/logs/archived/school-others.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<logger name="org.school.userandsecurity" level="${LOG_LEVEL}" additivity="false">
+		<appender-ref ref="SHOP-GENERAL" />
+	</logger>
+
+	<logger name="org.springframework" level="${LOG_LEVEL}" additivity="false">
+		<appender-ref ref="SHOP-GENERAL" />
+	</logger>
+
+	<logger name="net.sf.ehcache" level="${LOG_LEVEL}" additivity="false">
+		<appender-ref ref="SHOP-GENERAL" />
+	</logger>
+
+    <logger name="org.hibernate" level="${LOG_LEVEL}" additivity="false">
+        <appender-ref ref="SHOP-OTHERS" />
+    </logger>
+
+    <logger name="org.hibernate.SQL" level="${LOG_LEVEL}" additivity="false">
+        <appender-ref ref="SHOP-OTHERS" />
+    </logger>
+
+    <logger name="org.hibernate.type.descriptor.sql " level="TRACE" additivity="false">
+        <appender-ref ref="SHOP-OTHERS" />
+    </logger>
+
+	<root level="${LOG_LEVEL}">
+		<appender-ref ref="SHOP-GENERAL" />
+	</root>
+
+</configuration>

@@ -1,0 +1,47 @@
+<!-- 
+ * http://jasonwatmore.com/post/2016/01/31/angularjs-pagination-example-with-logic-like-google
+ */ -->
+<style class="cp-pen-styles">
+a {
+	cursor: pointer;
+}
+</style>
+	totalItems: {{totalItems}}
+	currentPage: {{currentPage}}
+	itemsPerPage: {{itemsPerPage}}
+	pageSize: {{pageSize}}<br>
+<div class="row">
+	<div class="col col-xs-6" aria-label="Page navigation example">
+		<ul uib-pagination total-items="totalItems"
+			ng-model="currentPage" items-per-page="itemsPerPage" class="pagination"></ul>
+	</div>
+</div><br><hr>
+
+<div ng-controller="MainCtrl">
+	<table id="mytable" class="table table-striped  ">
+		<thead>
+			<tr class="table-head">
+				<th><a href="#" ng-click="sortData('firstName')">First Name</a>
+				</th>
+				<th><a href="#" ng-click="sortData('lastName')">Last Name</a></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="person in entityList">
+				<td>
+					<div>{{person.id}}</div>
+				</td>
+				<td>
+					<div>{{person.groupName}}</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	totalItems: {{totalItems}}
+	currentPage: {{currentPage}}
+	itemsPerPage: {{itemsPerPage}}
+	pageSize: {{pageSize}}<br>
+	<ul uib-pagination total-items="totalItems" ng-model="currentPage"
+		items-per-page="itemsPerPage"></ul>
+</div>
+
