@@ -2,7 +2,7 @@
 <configuration scan="true" scanPeriod="60 seconds" packagingData="true">
 
 	<contextName>SHOP</contextName>
-    <property name="LOG_DIR" value="/logs/usersecurity" />
+    <property name="LOG_DIR" value="/logs/ofds" />
     <property name="LOG_LEVEL" value="DEBUG" />
 
 	<!-- proxy,common,util,web log appender -->
@@ -15,7 +15,7 @@
 		</encoder>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- rollover daily -->
-			<fileNamePattern>${LOG_DIR}/logs/archived/school.%d{yyyy-MM-dd}.%i.log
+			<fileNamePattern>${LOG_DIR}/logs/archived/ofds.%d{yyyy-MM-dd}.%i.log
 			</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy
 				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
@@ -34,7 +34,7 @@
 		</encoder>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- rollover daily -->
-			<fileNamePattern>${LOG_DIR}/logs/archived/school-others.%d{yyyy-MM-dd}.%i.log
+			<fileNamePattern>${LOG_DIR}/logs/archived/ofds-others.%d{yyyy-MM-dd}.%i.log
 			</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy
 				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">

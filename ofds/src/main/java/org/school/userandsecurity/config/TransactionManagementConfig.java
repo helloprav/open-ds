@@ -5,7 +5,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement
-@PropertySource("classpath:config/jdbc.properties")
+@PropertySource("classpath:${env}/config/jdbc.properties")
 public class TransactionManagementConfig extends AbstractTransactionManagementConfig {
 
 	private static final String ENTITY_PACKAGE_TO_SCAN = "org.school.userandsecurity.service.entity";
