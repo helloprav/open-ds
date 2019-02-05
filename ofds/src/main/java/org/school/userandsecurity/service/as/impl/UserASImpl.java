@@ -82,6 +82,20 @@ public class UserASImpl extends BaseASImpl implements UserAS {
 		return user;
 	}
 
+	@Override
+	public User findUserByUsernameOrEmailOrMobile(User user) {
+
+		List<User> users = userRepository.findByUsernameOrEmailOrMobile(user.getEmail(), user.getUsername(), user.getMobile());
+		if(users.isEmpty()) {
+			return null;
+		} else if(users.size()>1) {
+			logger.error("Multiple users found for the user []", user);
+			return null;
+		} else {
+			return users.get(org.openframework.common.rest.constants.NumberConstants.NUM_ZERO);
+		}
+	}
+
 	/*
 	@Override
 	public User updateStatus(User user) {

@@ -16,16 +16,21 @@ START TRANSACTION;
 -- DROP USER 'schoolusers'@'%';
 -- DROP DATABASE schoolusers;
 
-CREATE DATABASE IF NOT EXISTS ofds
-    CHARACTER SET utf8
-    COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS dbName CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-CREATE USER 'ofds'@'localhost' IDENTIFIED BY 'ofds';
-GRANT ALL PRIVILEGES ON ofds.* TO 'ofds'@'localhost';
+/*
+ * why drop user and flush priviledge required before create user
+ * https://stackoverflow.com/questions/5555328/error-1396-hy000-operation-create-user-failed-for-jacklocalhost
+ */
+drop user IF EXISTS 'dbUser'@'localhost';
+flush privileges;
+CREATE USER 'dbUser'@'localhost' IDENTIFIED BY 'dbPassword';
+GRANT ALL PRIVILEGES ON dbName.* TO 'dbUser'@'localhost';
 
-CREATE USER 'ofds'@'%' IDENTIFIED BY 'ofds';
-GRANT ALL PRIVILEGES ON ofds.* TO 'ofds'@'%';
+drop user IF EXISTS 'dbUser'@'%';
+flush privileges;
+CREATE USER 'dbUser'@'%' IDENTIFIED BY 'dbPassword';
+GRANT ALL PRIVILEGES ON dbName.* TO 'dbUser'@'%';
 
 FLUSH PRIVILEGES;
 COMMIT;
-

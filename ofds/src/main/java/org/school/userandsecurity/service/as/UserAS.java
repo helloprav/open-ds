@@ -16,6 +16,8 @@ public interface UserAS {
 
 	User findUserByEmail(String email);
 
+	User findUserByUsernameOrEmailOrMobile(User user);
+
 	User findUserGroupAndAccess(User user);
 
 	User updateUser(User user);

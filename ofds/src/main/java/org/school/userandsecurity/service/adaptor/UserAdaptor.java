@@ -1,6 +1,7 @@
 package org.school.userandsecurity.service.adaptor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
@@ -14,6 +15,7 @@ import org.school.userandsecurity.service.entity.User;
 import org.school.userandsecurity.service.entity.UserGroup;
 import org.school.userandsecurity.utils.EnumUtility;
 import org.school.userandsecurity.vo.GroupVO;
+import org.school.userandsecurity.vo.UserCredentialsVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -70,9 +72,15 @@ public class UserAdaptor {
 			for(int i=0; i<userVO.getPassword().length; i++) {
 				passwd[i] = new Character(userVO.getPassword()[i]);
 			}
-			user.setPassword(passwd);
+			user.setPassword(Arrays.toString(passwd));
 		}
 		updateEnumTypesFromVO(userVO, user);
+		return user;
+	}
+
+	public User fromVO(UserCredentialsVO userCredentialVO) {
+		User user = new User();
+		user.setUsername(userCredentialVO.getUsername());
 		return user;
 	}
 

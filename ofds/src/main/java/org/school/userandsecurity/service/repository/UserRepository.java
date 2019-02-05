@@ -35,6 +35,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	List<User> findByEmail(@Param("email") String email);
 
+	@Query("select u from User u where (u.username is not null and u.username = :username) or (u.email is not null and u.email = :email) or u.mobile is not null and u.mobile=:mobile")
+	List<User> findByUsernameOrEmailOrMobile(@Param("email") String email, @Param("username") String username, @Param("mobile") String mobile);
+
 	@Query("from User u left join fetch u.userGroups ug join fetch ug.group where u.id=:id")
 	User findUserGroupsAndFunctions(@Param("id") Long id);
 

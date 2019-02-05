@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="60 seconds" packagingData="true">
 
-	<contextName>SHOP</contextName>
+	<contextName>ofds</contextName>
     <property name="LOG_DIR" value="/logs/ofds" />
     <property name="LOG_LEVEL" value="DEBUG" />
 
 	<!-- proxy,common,util,web log appender -->
-	<appender name="SHOP-GENERAL"
+	<appender name="OFDS-GENERAL"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOG_DIR}/logs/ofds.log</file>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -25,7 +25,7 @@
 	</appender>
 
 	<!-- asset management log appender -->
-	<appender name="SHOP-OTHERS"
+	<appender name="OFDS-OTHERS"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOG_DIR}/logs/ofds-others.log</file>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -44,31 +44,31 @@
 	</appender>
 
 	<logger name="org.school.userandsecurity" level="${LOG_LEVEL}" additivity="false">
-		<appender-ref ref="SHOP-GENERAL" />
+		<appender-ref ref="OFDS-GENERAL" />
 	</logger>
 
 	<logger name="org.springframework" level="${LOG_LEVEL}" additivity="false">
-		<appender-ref ref="SHOP-GENERAL" />
+		<appender-ref ref="OFDS-GENERAL" />
 	</logger>
 
 	<logger name="net.sf.ehcache" level="${LOG_LEVEL}" additivity="false">
-		<appender-ref ref="SHOP-GENERAL" />
+		<appender-ref ref="OFDS-GENERAL" />
 	</logger>
 
     <logger name="org.hibernate" level="${LOG_LEVEL}" additivity="false">
-        <appender-ref ref="SHOP-OTHERS" />
+        <appender-ref ref="OFDS-OTHERS" />
     </logger>
 
     <logger name="org.hibernate.SQL" level="${LOG_LEVEL}" additivity="false">
-        <appender-ref ref="SHOP-OTHERS" />
+        <appender-ref ref="OFDS-OTHERS" />
     </logger>
 
     <logger name="org.hibernate.type.descriptor.sql " level="TRACE" additivity="false">
-        <appender-ref ref="SHOP-OTHERS" />
+        <appender-ref ref="OFDS-OTHERS" />
     </logger>
 
 	<root level="${LOG_LEVEL}">
-		<appender-ref ref="SHOP-GENERAL" />
+		<appender-ref ref="OFDS-GENERAL" />
 	</root>
 
 </configuration>

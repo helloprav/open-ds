@@ -35,8 +35,11 @@ public class User extends AbstractCommonEntity implements Serializable {
 	@Column(name = "LAST_NAME", length = 50)
 	private String lastName;
 
-	@Column(name = "PASSWORD", length = 500)
-	private Character[] password;
+	@Column(name = "PASSWORD", length = 50)
+	private String password;
+
+	@Column(name = "USERNAME", length = 50)
+	private String username;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "GENDER", length = 50)
@@ -103,11 +106,11 @@ public class User extends AbstractCommonEntity implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public Character[] getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(Character[] password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
@@ -189,6 +192,14 @@ public class User extends AbstractCommonEntity implements Serializable {
 
 	public void setUserAddresses(List<UserAddress> userAddresses) {
 		this.userAddresses = userAddresses;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 

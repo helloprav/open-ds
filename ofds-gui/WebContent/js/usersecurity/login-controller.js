@@ -13,14 +13,14 @@
             }
 
             var loginJson = {};
-            loginJson['email'] = $scope.login.username;
+            loginJson['username'] = $scope.login.username;
             loginJson['password'] = $scope.login.password;
 
             console.log(JSON.stringify(loginJson));
             $scope.loginDetail = loginJson;
             $scope.response=[];
             $http({
-                url : "/ofds/api/auth/login",
+                url : userMgmtCtx+"/auth/login",
                 method : "POST",
                 data : $scope.loginDetail
 			}).then(function successCallback(response) {
@@ -48,8 +48,18 @@
                     $state.go('home');
                     //var currentloc = $location.absUrl();
                     //$window.location.href = "./index.html";
+                } else if(statusCode == 400) {
+                    if(undefined != response.data.errorList) {
+
+                        $scope.error = response.data.errorList;
+                    } else if($scope.responseBody.errorMessage) {
+                		$scope.error = $scope.responseBody.errorMessage;
+                	} else {
+                		$scope.error = "There is some error in system. Please re-try after some time.";
+                	}
                 } else {
-                	$scope.error = "This will never be displayed";
+                    console.log("System Error: "+statusCode);
+                	$scope.error = "There is some error in system. Please re-try after some time.";
                 }
 
 			}, function errorCallback(response) {

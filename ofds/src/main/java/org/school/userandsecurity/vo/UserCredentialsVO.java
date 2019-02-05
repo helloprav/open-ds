@@ -15,32 +15,13 @@ import org.hibernate.validator.constraints.Length;
  */
 public class UserCredentialsVO {
 
-	@Email(message="email should be an valid email")
+	@NotNull(message = "Username is required")
 	@Length(max=50, message="length should not be more than 50 characters")
-	private String email;
-
-	@Length(max=50, message="length should not be more than 50 characters")
-	private String mobile;
+	private String username;
 
 	@NotNull(message = "Password is required")
 	@Size(min=5, max=50, message="The length should be between 5 and 50 characters long")
 	private char[] password;
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
 
 	public char[] getPassword() {
 		return password;
@@ -48,6 +29,14 @@ public class UserCredentialsVO {
 
 	public void setPassword(char[] password) {
 		this.password = password;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }

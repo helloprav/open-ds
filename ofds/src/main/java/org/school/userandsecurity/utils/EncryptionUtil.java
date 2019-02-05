@@ -1,5 +1,6 @@
 package org.school.userandsecurity.utils;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.security.InvalidAlgorithmParameterException;
@@ -21,6 +22,7 @@ import javax.inject.Inject;
 
 import org.openframework.commons.config.service.as.MessageResourceAS;
 import org.openframework.commons.constants.CommonConstants;
+import org.openframework.commons.utils.FileFolderUtils;
 import org.school.userandsecurity.constant.EncryptionConstants;
 import org.school.userandsecurity.constant.UserSecurityConstants;
 import org.slf4j.Logger;
@@ -35,6 +37,24 @@ public class EncryptionUtil {
 
 	@Inject
 	Optional<MessageResourceAS> messageResourceAS;
+
+	public static void main(String[] args) {
+		EncryptionUtil encryptionUtil = new EncryptionUtil();
+		String encryptedPassword = encryptionUtil.encrypt("toBeEncrypt", FileFolderUtils.loadPropFromFile(getEncryptionFile()));
+		System.out.println(encryptedPassword);
+	}
+
+	private static File getEncryptionFile() {
+
+		return new File(Thread.currentThread().getContextClassLoader().getResource("dev/config/encryption-config.yml")
+				.getFile());
+	}
+
+	private static Properties getPropertiesForPassword(File ymlFile) {
+
+		Properties props = FileFolderUtils.loadPropFromFile(ymlFile);
+		return null;
+	}
 
 	public String encrypt(String toBeEncrypt) {
 

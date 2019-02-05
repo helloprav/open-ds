@@ -7,8 +7,13 @@ import org.school.userandsecurity.service.entity.Group;
 import org.school.userandsecurity.service.entity.User;
 import org.school.userandsecurity.service.repository.GroupRepository;
 import org.school.userandsecurity.service.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BaseASImpl {
+
+	/** Logger that is available to subclasses */
+	protected final Logger logger = LoggerFactory.getLogger(getClass());
 
 	public User returnIfEntityExists(Long id, UserRepository baseRepository) {
 

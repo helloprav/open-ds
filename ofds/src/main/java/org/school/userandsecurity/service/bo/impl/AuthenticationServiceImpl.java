@@ -3,8 +3,9 @@
  */
 package org.school.userandsecurity.service.bo.impl;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,8 +18,9 @@ import org.openframework.common.rest.service.impl.BaseServiceImpl;
 import org.openframework.common.rest.vo.UserVO;
 import org.openframework.commons.domain.exceptions.ApplicationValidationException;
 import org.openframework.commons.domain.exceptions.AuthenticationException;
-import org.school.userandsecurity.constant.UserSecurityConstants;
+import org.openframework.commons.utils.HashingUtils;
 import org.school.userandsecurity.constant.CookieConstants;
+import org.school.userandsecurity.constant.UserSecurityConstants;
 import org.school.userandsecurity.service.adaptor.UserAdaptor;
 import org.school.userandsecurity.service.as.UserAS;
 import org.school.userandsecurity.service.bo.AuthenticationService;
@@ -75,7 +77,7 @@ public class AuthenticationServiceImpl extends BaseServiceImpl implements Authen
 		boolean loginSuccess = false;
 		UserVO userVO = null;
 
-		User user = getUserByUsername(userCredentialsVO);
+		User user = findByUsernameOrEmailOrMobile(userCredentialsVO);
 		// if user entered email
 		if (checkIfValidUser(user) && isValidPassword(userCredentialsVO, user)) {
 			loginSuccess = true;
@@ -83,34 +85,47 @@ public class AuthenticationServiceImpl extends BaseServiceImpl implements Authen
 		if (loginSuccess) {
 			userVO = userAdaptor.toVO(user);
 		} else {
-			throw new AuthenticationException("Invalid Credentials");
+			throw new ApplicationValidationException("Invalid Credentials. Please enter correct username and password.");
 		}
 
 		return userVO;
 	}
 
+	/**
+	 * Validates that 1) both of email & mobile are not empty, 2) Password is not
+	 * empty
+	 * 
+	 * @param userCredentialsVO
+	 */
 	private void validateLoginParameters(UserCredentialsVO userCredentialsVO) {
 
-		if (StringUtils.isBlank(userCredentialsVO.getEmail()) && StringUtils.isBlank(userCredentialsVO.getMobile())) {
-			throw new ApplicationValidationException("email or mobile is required");
+		boolean usernameMissing = StringUtils.isBlank(userCredentialsVO.getUsername());
+		boolean passwordMissing = null == userCredentialsVO.getPassword() || StringUtils.isBlank(String.valueOf(userCredentialsVO.getPassword()));
+
+		if((usernameMissing || passwordMissing)) {
+			throw new ApplicationValidationException("username or email or mobile and password is required");
 		}
 	}
 
 	private boolean isValidPassword(UserCredentialsVO userVO, User user) {
 
-		return true;
+		String hashedPassword;
+		try {
+			String plainMessage = String.valueOf(userVO.getPassword());
+			System.out.println("plainMessage: "+plainMessage);
+			hashedPassword = HashingUtils.sha1(plainMessage);
+			System.out.println("hashedPassword: "+hashedPassword);
+			return hashedPassword.equals(user.getPassword());
+		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+			// TODO log error here.
+			throw new ApplicationValidationException("There is some error matching password");
+		}
 		//return (Arrays.toString(user.getPassword()).equals(Arrays.toString(userVO.getPassword())));
 	}
 
-	private User getUserByUsername(UserCredentialsVO userVO) {
+	private User findByUsernameOrEmailOrMobile(UserCredentialsVO userVO) {
 
-		User user = null;
-		if (StringUtils.isNotBlank(userVO.getEmail())) {
-			user = userAS.findUserByEmail(userVO.getEmail());
-		} else if (StringUtils.isNotBlank(userVO.getMobile())) {
-			user = userAS.findUserByEmail(userVO.getEmail());
-		}
-		return user;
+		return userAS.findUserByUsernameOrEmailOrMobile(userAdaptor.fromVO(userVO));
 	}
 
 	private boolean checkIfValidUser(User user) {
